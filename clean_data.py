@@ -11,8 +11,8 @@ class Process_Text():
   
     def load_stopwords(self):
         stopwords = {}
-        with open('stopwords.txt', 'rU') as f:
-            for line in f:
+        with open('stopwords.txt', 'rU') as stop_words_list:
+            for line in stop_words_list:
                 stopwords[line.strip()] = 1
         return stopwords 
 
