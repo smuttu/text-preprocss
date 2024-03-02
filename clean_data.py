@@ -4,7 +4,7 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from gensim import corpora
 from nltk.stem.porter import PorterStemmer
 
-class Predict():
+class Process_Text():
     def __init__(self):
         dictionary_path = "models/dictionary.dict"
         self.dictionary = corpora.Dictionary.load(dictionary_path)
@@ -32,7 +32,7 @@ class Predict():
             lem = WordNetLemmatizer()
             lemmatized_words = [lem.lemmatize(word) for word in stemmed]
 
-            # Using a Tagger. Which is part-of-speech
+            # Using a Tagger. part-of-speech tagging as nouns, adjective etc
 
             tagged_text = nltk.pos_tag(lemmatized_words)
 
@@ -52,13 +52,13 @@ class Predict():
         return words
 
 def main(csv_file_path):
-    predict = Predict()
+    process = Process_Text()
 
     with open(csv_file_path, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             answer = row['Answer']
-            result = predict.run(answer)
+            result = process.run(answer)
             print(f"\n\nResult for '{answer}': {result}\n")
 
 if __name__ == '__main__':
